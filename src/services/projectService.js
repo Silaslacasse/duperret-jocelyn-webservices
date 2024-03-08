@@ -2,7 +2,7 @@ import Project  from "../models/project.model.js";
 
 const findAllProjects = async (query)=>{
     try {
-        const   allProjects = await Project.find().sort({
+        const allProjects = await Project.find().sort({
             createdAt: query.order === "desc" ? "desc" : "asc",
           })
           .limit(query.limit || 0)

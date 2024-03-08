@@ -2,7 +2,7 @@ import projectService from "../services/projectService.js";
 import client from '../utils/redis.js'
 
 const getAllProjects = async (req,res)=>{
-    const allProjects = await projectService.findAllProjects()
+    const allProjects = await projectService.findAllProjects(req.query)
     await client.SETEX(req.originalUrl, 25000, JSON.stringify(allProjects));
     return res.json(allProjects)
 }
