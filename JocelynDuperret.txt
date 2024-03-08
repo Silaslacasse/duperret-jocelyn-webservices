@@ -1,0 +1,25 @@
+Voici le liens de mon repo : https://github.com/Silaslacasse/duperret-jocelyn-webservices
+
+voici le contenu du .env : 
+
+ORIGIN='*'
+MONGO_URI='mongodb+srv://jocelynduperret:oMyZg3CADXdSv4J0@cluster0.f2izade.mongodb.net/?retryWrites=true&w=majority'
+JWT_SECRET='kyu4635guyGI57UYK78568GHJVkuygluyGUYguuy4354E5R768'
+
+
+une fois le .env créer, --> npm i
+
+ensuite il faut un docker-compose up pour lancer le redis.
+
+Vous pouvez utiliser la colleciton a la racine du git pour tester sur postman.
+
+Voici les identifiant pour se connecter et avoir un token admin : 
+
+{
+    "email": "admin@admin.com", 
+    "password": "admin"
+}
+
+J'èspere ne rien avoir oublié niveau accès, sinon : jocelynduperret@gmail.com
+
+Bonne réception.
