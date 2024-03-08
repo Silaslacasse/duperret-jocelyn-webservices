@@ -1,13 +1,16 @@
 import usersService from '../services/userService.js'
+import client from '../utils/redis.js'
 
 const getAllUsers = async (req,res)=>{
-    const allUsers = await usersService.findAllUsers()
+    const allUsers = await usersService.findAllUsers(req.query)
+    await client.SETEX(req.originalUrl, 25000, JSON.stringify(allUsers));
     return res.json(allUsers)
 }
 
 const getUserById = async (req,res)=>{
     const {id} = req.params
     const user = await usersService.findOneUserById({_id:id})
+    await client.SETEX(req.originalUrl, 25000, JSON.stringify(user));
     return res.json(user)
 }
 

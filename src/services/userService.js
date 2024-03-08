@@ -1,5 +1,6 @@
 import User  from "../models/user.model.js";
 import bcrypt from "bcryptjs"
+import { getSkillsFromQuery } from "../utils/getSkillsFromQuery.js";
 
 
 const findOneUserByEmail = async ({email})=>{
@@ -9,7 +10,6 @@ const findOneUserByEmail = async ({email})=>{
     } catch (error) {
         throw error
     }
-
 }
 
 const findOneUserById = async ({_id})=>{
@@ -41,9 +41,15 @@ const updateUserById = async ({_id, data})=>{
     }
 }
 
-const findAllUsers = async ()=>{
+const findAllUsers = async (query)=>{
     try {
-        const   allUsers = await User.find()
+        const skillsIds = await getSkillsFromQuery(query);
+        console.log(skillsIds);
+        const allUsers = await User.find(query.skills ? { skills: { $in: skillsIds } } : {}).sort({
+            createdAt: query.order === "desc" ? "desc" : "asc",
+          })
+          .limit(query.limit || 0)
+          .lean();
         return  allUsers
     } catch (error) {
         throw error

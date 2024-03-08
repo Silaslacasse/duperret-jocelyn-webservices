@@ -1,13 +1,16 @@
 import projectService from "../services/projectService.js";
+import client from '../utils/redis.js'
 
 const getAllProjects = async (req,res)=>{
     const allProjects = await projectService.findAllProjects()
+    await client.SETEX(req.originalUrl, 25000, JSON.stringify(allProjects));
     return res.json(allProjects)
 }
 
 const getProjectById = async (req,res)=>{
     const {id} = req.params
     const project = await projectService.findOneProjectById({_id:id})
+    await client.SETEX(req.originalUrl, 25000, JSON.stringify(project));
     return res.json(project)
 }
 

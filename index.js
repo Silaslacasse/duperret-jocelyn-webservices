@@ -5,10 +5,12 @@ import cookieParser  from 'cookie-parser';
 import api     from './src/routes/index.js';
 import connect from './db/dbconnect.js';
 import cors from "cors";
+import { connectRedis } from "./src/utils/redis.js";
 
 const app = express()
 
 connect();
+connectRedis();
 app.use(morgan('dev'))
 app.use(express.json())
 app.use(cookieParser())

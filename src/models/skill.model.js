@@ -4,7 +4,9 @@ const { Schema } = mongoose;
 
 const skillSchema = new Schema({
     name: String
-});
+},
+{ timestamps: true }
+);
 
 const skillModel = mongoose.model('skills',skillSchema)
 

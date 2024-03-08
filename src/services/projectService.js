@@ -1,8 +1,12 @@
 import Project  from "../models/project.model.js";
 
-const findAllProjects = async ()=>{
+const findAllProjects = async (query)=>{
     try {
-        const   allProjects = await Project.find()
+        const   allProjects = await Project.find().sort({
+            createdAt: query.order === "desc" ? "desc" : "asc",
+          })
+          .limit(query.limit || 0)
+          .lean();
         return  allProjects
     } catch (error) {
         throw error

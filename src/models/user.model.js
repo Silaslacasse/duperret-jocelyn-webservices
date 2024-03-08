@@ -9,7 +9,7 @@ const userSchema = new Schema({
     password:{ type:String, required:'mot de passe obligatoire' },
     roles: {type: String, enum: ['user', 'admin'], default: 'user'},
     skills:[{
-        type: [Schema.Types.ObjectId],
+        type: Schema.Types.ObjectId,
         ref: "skills"
       }],
     refreshToken:String

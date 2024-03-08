@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 const projectSchema = new Schema({
     projectName : String, 
     users:[{
-        type: [Schema.Types.ObjectId],
+        type: Schema.Types.ObjectId,
         ref: "users"
       }],
    

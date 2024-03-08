@@ -1,13 +1,18 @@
 import skillService from "../services/skillService.js";
+import client from '../utils/redis.js'
+
 
 const getAllSkills = async (req,res)=>{
-    const allSkills = await skillService.findAllSkills()
+    const allSkills = await skillService.findAllSkills(req.query)
+    await client.SETEX(req.originalUrl, 25000, JSON.stringify(allSkills));
+
     return res.json(allSkills)
 }
 
 const getSkillById = async (req,res)=>{
     const {id} = req.params
     const skill = await skillService.findOneSkillById({_id:id})
+    await client.SETEX(req.originalUrl, 25000, JSON.stringify(skill));
     return res.json(skill)
 }
 
