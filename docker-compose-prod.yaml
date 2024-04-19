@@ -16,7 +16,7 @@ services:
       - ${PORT}:${PORT}
     ports:
       - ${PORT}
-    command: "npm start"
+    command: "npm --prefix /app install && npm --prefix /app start"
   redis:
     image: redis:6.2-alpine
     ports:
