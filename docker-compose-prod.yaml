@@ -10,6 +10,7 @@ services:
       - MONGO_URI=${MONGO_URI}
       - JWT_SECRET=${JWT_SECRET}
       - ORIGIN=${ORIGIN}
+      - REDIS_HOST=${REDIS_HOST}
     command: "npm start"
   redis:
     image: redis:6.2-alpine
