@@ -11,6 +11,11 @@ services:
       - JWT_SECRET=${JWT_SECRET}
       - ORIGIN=${ORIGIN}
       - REDIS_HOST=${REDIS_HOST}
+      - PORT=${PORT}
+    expose:
+      - ${PORT}:${PORT}
+    ports:
+      - ${PORT}
     command: "npm start"
   redis:
     image: redis:6.2-alpine
