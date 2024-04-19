@@ -1,0 +1,17 @@
+services:
+  node:
+    depends_on:
+      - redis
+    image: node:21-alpine3.17
+    working_dir: /app
+    volumes:
+      - ./:/app
+    environment:
+      - MONGO_URI=${MONGO_URI}
+      - JWT_SECRET=${JWT_SECRET}
+      - ORIGIN=${ORIGIN}
+    command: "npm start"
+  redis:
+    image: redis:6.2-alpine
+    ports:
+      - '6379:6379'

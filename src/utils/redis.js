@@ -1,6 +1,6 @@
 import { createClient } from "redis";
 
-const client = createClient();
+const client = createClient({socket: {port: 6379, host: process.env.REDIS_HOST}});
 
 export async function connectRedis() {
   try {
